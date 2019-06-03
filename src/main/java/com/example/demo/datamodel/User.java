@@ -49,26 +49,24 @@ public class User implements UserDetails {
 		this.password = password;
 	}
 
-//	public List<Role> getRoles() {
-//		return roles;
-//	}
-//
-//	public void setRoles(List<Role> roles) {
-//		this.roles = roles;
-//	}
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
 
 	@Column(nullable = false, unique = true)
 	private String email;
-	@Column(nullable = false,length = 80)
+	@Column(nullable = false, length = 80)
 	private String password;
-//	@ManyToMany(cascade = CascadeType.MERGE)
-//	@JoinTable(name = "user_role", joinColumns = {
-//			@JoinColumn(name = "USER_ID", referencedColumnName = "ID") }, inverseJoinColumns = {
-//					@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID") })
-//	private List<Role> roles;
+	@ManyToMany(cascade = CascadeType.MERGE)
+	@JoinTable(name = "user_role", joinColumns = {
+			@JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = {
+					@JoinColumn(name = "role_id", referencedColumnName = "id") })
+	private List<Role> roles;
 
-	// setters and getters
-	// UserDetails methods
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
