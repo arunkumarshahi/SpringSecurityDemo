@@ -41,11 +41,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		System.out.print("is it configure :: " + http.csrf().disable().authorizeRequests());
 
 		http.csrf().disable().authorizeRequests().antMatchers("/", "/register", "/forgotPassword").permitAll()
-				.antMatchers("/admin/**").hasRole("ADMIN").and().exceptionHandling()
-				.authenticationEntryPoint(new Http401AuthenticationEntryPoint("Basic realm=\"MyApp\"")).and()
-				.formLogin().permitAll().loginProcessingUrl("/login").successHandler(authenticationSuccessHandler)
-				.failureHandler(new SimpleUrlAuthenticationFailureHandler()).and().logout().permitAll()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-				.logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
+				.antMatchers("/home").hasRole("USER"). and ()
+                .formLogin ()
+                .loginPage ( "/login")
+                .permitAll ()
+                .and ()
+                .logout () // get method for I desabilitado CSRF
+                .permitAll ();
+//				antMatchers("/admin/**").hasRole("ADMIN").
+//				and().exceptionHandling()
+//				.authenticationEntryPoint(new Http401AuthenticationEntryPoint("Basic realm=\"MyApp\"")).and()
+//				.formLogin().permitAll().loginProcessingUrl("/login").successHandler(authenticationSuccessHandler)
+//				.failureHandler(new SimpleUrlAuthenticationFailureHandler()).and().logout().permitAll()
+//				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//				.logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
 	}
 }

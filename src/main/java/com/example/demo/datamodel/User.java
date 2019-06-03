@@ -1,5 +1,6 @@
 package com.example.demo.datamodel;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -69,7 +70,11 @@ public class User implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
+		List<SimpleGrantedAuthority> simpleGrantedAuthorityList  = new ArrayList<SimpleGrantedAuthority>();
+		roles.forEach((role)->{
+			simpleGrantedAuthorityList.add(new SimpleGrantedAuthority(role.getName()));
+		});
+		return simpleGrantedAuthorityList;
 	}
 
 	@Override

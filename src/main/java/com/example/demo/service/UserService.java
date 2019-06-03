@@ -21,7 +21,7 @@ public class UserService {
 	public UserService(UserRepository repo) {
 		this.userRepository = repo;
 	}
-	
+	@Secured("ROLE_USER")
 	public Optional<User> findUserById(Integer userId) {
 		return userRepository.findById(userId);
 	}

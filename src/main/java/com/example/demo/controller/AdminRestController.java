@@ -26,7 +26,7 @@ public class AdminRestController {
 	@Autowired
 	private UserService userService;
 
-	// @PreAuthorize("hasRole('USER')")
+	@PreAuthorize("hasRole('TESTUSER')")
 	@GetMapping("/admin/users/{id}")
 	public Optional<User> getUsers(@PathVariable("id") Integer userId) {
 		getRoleDetails();
@@ -54,8 +54,7 @@ public class AdminRestController {
 				.getContext().getAuthentication().getAuthorities();
 		System.out.println("Roles are ::: " + authorities);
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		boolean hasUserRole = authentication.getAuthorities().stream()
-				.anyMatch(r -> r.getAuthority().equals("ADMIN"));
+		boolean hasUserRole = authentication.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
 		System.out.println("hasUserRole::: " + hasUserRole);
 
 	}
