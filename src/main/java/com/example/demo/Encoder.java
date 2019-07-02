@@ -15,7 +15,7 @@ public class Encoder {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String password = "julie";
+		String password = "Welcome1";
 		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String hashedPassword = passwordEncoder.encode(password);
 		

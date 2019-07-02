@@ -1,21 +1,59 @@
-<html>
-<head></head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Spring Boot Thymeleaf Hello World Example</title>
+
+   
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+
+</head>
 <body>
-   <h1>Login</h1>
-   <form name='f' action="login" method='POST'>
-      <table>
-         <tr>
-            <td>User:</td>
-            <td><input type='text' name='username' value=''></td>
-         </tr>
-         <tr>
-            <td>Password:</td>
-            <td><input type='password' name='password' /></td>
-         </tr>
-         <tr>
-            <td><input name="submit" type="submit" value="submit" /></td>
-         </tr>
-      </table>
+<div class="container">
+ <form name='f' action="/login" method='POST'>
+    <div class="row">
+      <h2 style="text-align:center">Login with Social Media or Manually</h2>
+      <div class="vl">
+        <span class="vl-innertext">or</span>
+      </div>
+
+      <div class="col">
+        <a href="#" class="fb btn">
+          <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+        </a>
+        <a href="#" class="twitter btn">
+          <i class="fa fa-twitter fa-fw"></i> Login with Twitter
+        </a>
+        <a href="#" class="google btn">
+          <i class="fa fa-google fa-fw"></i> Login with Google+
+        </a>
+      </div>
+
+      <div class="col">
+        <div class="hide-md-lg">
+          <p>Or sign in manually:</p>
+        </div>
+
+        <input type="text" name="username" placeholder="Username"  required>
+        <input type="password" name="password" placeholder="Password"   required>
+        <input type="submit" value="Login">
+      </div>
+
+    </div>
   </form>
+</div>
+
+<div class="bottom-container">
+  
+    <div class="col1">
+      <a th:href="@{/registration}" style="color:white" class="btn">Sign up</a>
+    </div>
+    <div></div>
+    <div class="col1">
+      <a href="#" style="color:white" class="btn">Forgot password?</a>
+    </div>
+  
+</div>
 </body>
 </html>
